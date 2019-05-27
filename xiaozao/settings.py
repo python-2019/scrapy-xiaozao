@@ -15,7 +15,8 @@ SPIDER_MODULES = ['xiaozao.spiders']
 NEWSPIDER_MODULE = 'xiaozao.spiders'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3676.400 QQBrowser/10.4.3505.400'
 LOG_LEVEL = 'WARNING'
-
+# 文件存放路径
+FILE_PATH = '小灶实习.csv'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'xiaozao (+http://www.yourdomain.com)'
 
@@ -68,8 +69,6 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
     'xiaozao.pipelines.XiaozaoPipeline': 300,
 }
-# 文件存放路径
-FILE_PATH = 'C:/Users/1/Desktop/小灶实习.csv'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 # AUTOTHROTTLE_ENABLED = True
