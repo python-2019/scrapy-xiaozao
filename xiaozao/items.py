@@ -15,7 +15,7 @@ class XiaozaoItem(scrapy.Item):
     # 职位
     post = scrapy.Field()
     # 企业
-    conpany = scrapy.Field()
+    company = scrapy.Field()
     # 城市
     city = scrapy.Field()
     # 发布时间

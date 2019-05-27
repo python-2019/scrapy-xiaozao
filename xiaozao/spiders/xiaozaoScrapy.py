@@ -25,11 +25,11 @@ class xiaozaoScrapy(scrapy.Spider):
         for div in div_list:
             item = XiaozaoItem()
             item['post'] = div.xpath("./div/a/dl/dt/text()").extract_first()
-            item['conpany'] = div.xpath("./div/a/dl/dd[1]/text()").extract_first()
+            item['company'] = div.xpath("./div/a/dl/dd[1]/text()").extract_first()
             # 这里存在换行符需过滤
-            item['city'] = div.xpath("./div/a/dl/dd[2]/text()").extract_first()
+            item['city'] = div.xpath("./div/a/dl/dd[2]/text()").extract()[1]
             # 这里存在换行符需过滤
-            item['date'] = div.xpath("./div/a/dl/dd[3]/text()").extract_first()
+            item['date'] = div.xpath("./div/a/dl/dd[3]/text()").extract()[1]
             item['comment'] = div.xpath("./div[@class='comment']/a/span/text()").extract_first()
             item['logo'] = div.xpath("./a/img/@src").extract_first()
             # 详情地址
