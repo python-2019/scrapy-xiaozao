@@ -16,13 +16,16 @@ NEWSPIDER_MODULE = 'xiaozao.spiders'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3676.400 QQBrowser/10.4.3505.400'
 LOG_LEVEL = 'WARNING'
 # 文件存放路径
-FILE_PATH = '小灶实习.csv'
+FILE_PATH = ''
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'xiaozao (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-
+ITEM_PIPELINES = {
+    'xiaozao.pipelines.XiaozaoPipeline': 300,
+    'xiaozao.pipelines.XiaozaoExcelPipeline': 301,
+}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -66,9 +69,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'xiaozao.pipelines.XiaozaoPipeline': 300,
-}
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 # AUTOTHROTTLE_ENABLED = True
