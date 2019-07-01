@@ -41,15 +41,17 @@ class XiaozaoPipeline(object):
 
 class XiaozaoExcelPipeline(object):
 
-    col = "A"
-    row_num = 1
 
     def open_spider(self, spider):
+        self.col = "A"
+        self.row_num = 1
         file_path = settings.get("FILE_PATH") + '小灶实习.xlsx'
-        workbook = xlsxwriter.Workbook(file_path)
+        self.workbook = xlsxwriter.Workbook(file_path)
         headers = ['职位', '企业', '城市', '工作地点', '发布时间', '小灶点评', 'logo', '基础职位信息', '详细职位信息', '详情链接']
+        # 新建sheet（sheet的名称为"sheet1"）
+        self.worksheet = self.workbook.add_worksheet('sheet1')
         # 插入头部
-        workbook.write_row("A1", headers)
+        self.worksheet.write_row("A1", headers)
 
     def process_item(self, item, spider):
         post = item['post']
@@ -59,15 +61,17 @@ class XiaozaoExcelPipeline(object):
         date = item['date']
         comment = item['comment']
         logo = item['logo']
-        base_post_info = item['base_post_info']
+        base_post_info = item['base_post_info'][0] if len(item['base_post_info']) != 0 else "面谈"
+        print(base_post_info)
+        print(type(base_post_info))
         post_info = item['post_info']
         href = item['href']
         row = [post, company, city, addr, date, comment, logo, base_post_info, post_info, href]
         self.row_num = self.row_num+1
         col_row = self.col+str(self.row_num)
-        self.workbook.write_row(col_row, row)
+        self.worksheet.write_row(col_row, row)
         print(row)
         return item
 
     def close_spider(self, spider):
-        self.workbook.closed()
+        self.workbook.close()
